@@ -1,0 +1,38 @@
+.c-button {
+  .global_flex-center();
+  .global_hover-active();
+
+  margin-top: 1rem;
+  border-radius: 0.35rem;
+  white-space: nowrap;
+  line-height: 1;
+
+  &:not(:last-child) {
+    margin-right: 0.75rem;
+  }
+
+  &.small {
+    padding: 0.5rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  &.large {
+    padding: 0.75rem 2.75rem;
+    font-weight: bold;
+    font-size: 1.15rem;
+  }
+
+  &.default {
+    border: 1.5px solid var(--white);
+  }
+
+  &.primary {
+    background-color: var(--theme-green-color-one);
+    color: #fff;
+  }
+
+  &.danger {
+    background-color: var(--red);
+    color: #fff;
+  }
+}

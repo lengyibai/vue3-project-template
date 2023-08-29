@@ -1,7 +1,6 @@
-declare module "*.vue" {
+module "*.vue" {
   const component: DefineComponent;
   export default component;
 }
-
 
 module "*.json";

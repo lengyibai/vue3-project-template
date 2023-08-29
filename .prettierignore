@@ -4,6 +4,4 @@ node_modules
 *.svg
 *.md
 
-public
-src/typings
-test
+src/typings/components.d.ts

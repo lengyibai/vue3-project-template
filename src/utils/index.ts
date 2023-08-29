@@ -1,6 +1,8 @@
-import $Bus from "./modules/eventBus";
-import Flexible from "./modules/flexible";
-import * as TOOL from "./modules/tool";
+import $bus from "./modules/eventBus";
+import $flexible from "./modules/flexible";
+import $loading from "./modules/loading";
+import $message from "./modules/message";
+import $tip from "./modules/tip";
+import * as $tool from "./modules/tool";
 
-const Util = { $Bus, Flexible, TOOL };
-export { Util };
+export { $bus, $flexible, $tool, $loading, $message, $tip };

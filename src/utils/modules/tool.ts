@@ -10,8 +10,3 @@ export const throttleDelay = (() => {
     }
   };
 })();
-
-export default {
-  /** 节流 */
-  throttleDelay,
-};
