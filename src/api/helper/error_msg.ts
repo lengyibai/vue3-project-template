@@ -1,13 +1,13 @@
 import { AxiosResponse, AxiosError } from "axios";
 
-import userStore from "@/stores/modules/user";
+import { UserStore } from "@/stores";
 
 /** @description 处理错误 */
 const handleError = (err: AxiosError) => {
   if (err.code === "ERR_CANCELED") return "请求已取消";
   if (err.code === "ERR_NETWORK") return "网络错误";
 
-  const $userStore = userStore();
+  const $userStore = UserStore();
 
   const code = err.response?.status;
 

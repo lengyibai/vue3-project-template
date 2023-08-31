@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 /** @description 用户信息 */
-const userStore = defineStore("user", () => {
+const UserStore = defineStore("user", () => {
   /** 是否登录 */
   const status = ref(false);
   /** 用户信息 */
@@ -37,4 +37,4 @@ const userStore = defineStore("user", () => {
   };
 });
 
-export default userStore;
+export { UserStore };

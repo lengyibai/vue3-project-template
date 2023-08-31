@@ -2,12 +2,12 @@ import { createApp } from "vue";
 
 import "@/styles/index.less";
 import App from "./App.vue";
+import setupStore from "./stores";
 
 import { $flexible } from "@/utils";
 import setupLanguage from "@/language";
 import setupDirectives from "@/directives";
 import setupRouter from "@/router";
-import setupStore from "@/stores";
 
 const app = createApp(App);
 

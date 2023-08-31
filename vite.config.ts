@@ -100,7 +100,7 @@ export default defineConfig(({ mode }) => {
     },
 
     build: {
-      minify: "terser",
+      minify: getViteEnv("VITE_MINIFY") && "terser",
       chunkSizeWarningLimit: 1500,
       cssTarget: "chrome61",
       rollupOptions: {

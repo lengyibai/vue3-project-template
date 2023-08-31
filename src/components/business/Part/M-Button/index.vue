@@ -13,7 +13,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div
-    class="c-button"
+    class="m-button"
     :class="[type, size, line ? 'line' : 'full']"
     :style="{
       'font-size': fontSize,
