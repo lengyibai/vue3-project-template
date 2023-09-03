@@ -1,21 +1,13 @@
-import type { App } from "vue";
+import type { Directive, App } from "vue";
 
-import focus from "./modules/focus";
+const modules = import.meta.glob("./modules/*.ts", { eager: true }) as Record<string, { default: Directive }>;
 
-const directivesList: Record<string, any> = {
-  focus,
-};
+function setupDirective(app: App) {
+  for (const key in modules) {
+    const name = key.slice(10, -3);
 
-const directives = {
-  install: function (app: App<Element>) {
-    Object.keys(directivesList).forEach((key) => {
-      app.directive(key, directivesList[key]);
-    });
-  },
-};
+    app.directive(name, modules[key].default);
+  }
+}
 
-const setupDirectives = (app: App) => {
-  app.use(directives);
-};
-
-export default setupDirectives;
+export default setupDirective;

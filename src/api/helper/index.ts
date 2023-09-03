@@ -1,8 +1,14 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
+import { ResultData } from "../interface/modules/result";
+
+import { handleError, handleResponse } from "./error_msg";
+
+import { $message } from "@/utils";
+
 const user = {
   baseURL: import.meta.env.VITE_API as string,
-  timeout: 600000,
+  timeout: 30000,
 };
 
 class RequestUser {
@@ -23,28 +29,37 @@ class RequestUser {
     /** @description 响应拦截器 */
     this.service.interceptors.response.use(
       async (response: AxiosResponse) => {
+        const err_msg = handleResponse(response);
+
+        if (err_msg) $message(err_msg, "ERROR");
+
         return response;
       },
       async (error: AxiosError) => {
-        return error;
+        const err_msg = handleError(error);
+
+        if (err_msg) {
+          $message(err_msg, "ERROR");
+        }
+
+        return Promise.reject(error);
       }
     );
   }
 
-  //常用请求方法封装
-  get<T = any>(url: string, params?: object, config?: AxiosRequestConfig): Promise<T> {
+  get<T = any>(url: string, params?: object, config?: AxiosRequestConfig): Promise<ResultData<T>> {
     return this.service.get(url, { params, ...config });
   }
 
-  post<T = any>(url: string, params?: object, config?: AxiosRequestConfig): Promise<T> {
+  post<T = any>(url: string, params?: object, config?: AxiosRequestConfig): Promise<ResultData<T>> {
     return this.service.post(url, params, config);
   }
 
-  put<T = any>(url: string, params?: object, config?: AxiosRequestConfig): Promise<T> {
+  put<T = any>(url: string, params?: object, config?: AxiosRequestConfig): Promise<ResultData<T>> {
     return this.service.put(url, params, config);
   }
 
-  delete<T = any>(url: string, params?: any, config?: AxiosRequestConfig): Promise<T> {
+  delete<T = any>(url: string, params?: any, config?: AxiosRequestConfig): Promise<ResultData<T>> {
     return this.service.delete(url, { params, ...config });
   }
 }

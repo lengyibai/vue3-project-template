@@ -1,11 +1,10 @@
-.flex-center{
+.global_flex-center {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
-
-.hover-active {
+.global_hover-active {
   user-select: none;
   cursor: pointer;
 
@@ -16,4 +15,16 @@
   &:active {
     opacity: 0.5;
   }
+}
+
+.global_mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--black-50);
 }

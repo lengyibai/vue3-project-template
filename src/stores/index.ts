@@ -1,15 +1,13 @@
 import { createPinia } from "pinia";
 import { App } from "vue";
 
-import counter from "./modules/counter";
+import { UserStore } from "./modules/user";
+import { ControlStore } from "./modules/control";
 
 const setupStore = (app: App) => {
   const pinia = createPinia();
   app.use(pinia);
 };
-const Store = {
-  counter,
-};
 
-export { Store };
+export { UserStore, ControlStore };
 export default setupStore;
