@@ -7,6 +7,9 @@ import routes from "./routes";
 const router = createRouter({
   routes,
   history: createWebHashHistory(),
+  scrollBehavior(to, from, savedPosition) {
+    document.querySelector("#main")?.scrollTo({ top: 0 });
+  },
 });
 
 const setupRouter = (app: App) => {
