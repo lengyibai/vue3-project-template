@@ -8,7 +8,8 @@ export interface ResultData<T> {
 /** @description 返回参数 */
 export namespace Result {
   /** @description 用户相关 */
-  export interface UserInfo {
-    name: string;
+  export namespace User {
+    /** @description 用户信息 */
+    export interface UserInfo {}
   }
 }
