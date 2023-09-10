@@ -1,7 +1,7 @@
-import toast from "./modules/toast";
-import loading from "./modules/loading";
+// import toast from "./modules/toast";
+// import loading from "./modules/loading";
 
-export default {
-  toast,
-  loading,
-};
+// export default {
+//   toast,
+//   loading,
+// };

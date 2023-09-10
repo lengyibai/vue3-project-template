@@ -1,10 +1,10 @@
-import { ElMessage } from "element-plus";
+// import { ElMessage } from "element-plus";
 
-const message = (message: string, type: "success" | "warning" | "info" | "error") => {
-  ElMessage({
-    message,
-    type,
-  });
-};
+// const message = (message: string, type: "success" | "warning" | "info" | "error") => {
+//   ElMessage({
+//     message,
+//     type,
+//   });
+// };
 
-export default message;
+// export default message;
