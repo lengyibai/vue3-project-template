@@ -1,35 +1,55 @@
-import { $bus } from "@/utils";
+/* Loading防抖 */
 
-let loadingTimeout: NodeJS.Timeout | null;
+import { $bus } from "..";
+
+let loadingTimeout: NodeJS.Timeout | undefined;
+let timer: NodeJS.Timeout;
 let needLoadingRequestCount = 0;
-let timer: NodeJS.Timeout | undefined;
 
 /** @description 开启loading */
-const show = async (text: string) => {
-  timer = setTimeout(() => {
-    if (loadingTimeout) clearTimeout(loadingTimeout);
+const showRequest = async (text: string) => {
+  if (loadingTimeout) clearTimeout(loadingTimeout);
 
-    $bus.emit("loading", {
-      show: true,
-      text: "正在" + text,
-    });
-  }, 50);
+  $bus.emit("loading", {
+    show: true,
+    text,
+  });
 
   needLoadingRequestCount++;
 };
 
 /** @description 关闭loading */
-const close = async () => {
-  clearTimeout(timer);
-
+const closeRequset = async () => {
   needLoadingRequestCount--;
 
   if (needLoadingRequestCount <= 0) {
     loadingTimeout = setTimeout(() => {
       $bus.emit("loading", { show: false });
-      loadingTimeout = null;
+      loadingTimeout = undefined;
     }, 1000);
   }
 };
 
-export default { show, close };
+const showView = async (text: string) => {
+  timer = setTimeout(() => {
+    $bus.emit("loading", {
+      show: true,
+      text,
+    });
+  }, 500);
+
+  needLoadingRequestCount++;
+};
+
+/** @description 关闭loading */
+const closeView = async () => {
+  clearTimeout(timer);
+
+  needLoadingRequestCount--;
+
+  if (needLoadingRequestCount <= 0) {
+    $bus.emit("loading", { show: false });
+  }
+};
+
+export default { showRequest, closeRequset, showView, closeView };

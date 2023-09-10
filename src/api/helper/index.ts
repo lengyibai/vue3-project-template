@@ -4,7 +4,7 @@ import { ResultData } from "../interface/modules/result";
 
 import { handleError, handleResponse } from "./error_msg";
 
-import { $message } from "@/utils";
+import { $loading, $message } from "@/utils";
 
 const user = {
   baseURL: import.meta.env.VITE_API as string,
@@ -19,6 +19,7 @@ class RequestUser {
     /** @description 请求拦截器 */
     this.service.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
+        $loading.showRequest("加载中...");
         return config;
       },
       (error: AxiosError) => {
@@ -33,14 +34,16 @@ class RequestUser {
 
         if (err_msg) $message(err_msg, "ERROR");
 
+        $loading.closeRequset();
+
         return response;
       },
       async (error: AxiosError) => {
         const err_msg = handleError(error);
 
-        if (err_msg) {
-          $message(err_msg, "ERROR");
-        }
+        if (err_msg) $message(err_msg, "ERROR");
+
+        $loading.closeRequset();
 
         return Promise.reject(error);
       }
