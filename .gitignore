@@ -2,3 +2,4 @@ node_modules
 dist
 dev-dist
 src/typings/components.d.ts
+package-lock.json
