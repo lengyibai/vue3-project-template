@@ -27,6 +27,7 @@ export default defineConfig(({ mode }) => {
         inject: {
           data: {
             title: getViteEnv("VITE_HTML_TITLE"),
+            icon: getViteEnv("VITE_HTML_ICON"),
           },
         },
       }),

@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "dev:all": "run-p dev dev:main dev:minor",
+    "build:all": "run-p build build:main build:minor",
+    "preview:all": "run-p preview preview:main preview:minor",
     "dev": "vue-tsc && vite",
     "dev:main": "vue-tsc && vite --mode main",
     "dev:minor": "vue-tsc && vite --mode minor",
