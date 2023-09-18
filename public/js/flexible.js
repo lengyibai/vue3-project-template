@@ -1,5 +1,5 @@
-const min_font_size = 9;
-const max_font_size = 14;
+const min_font_size = 10;
+const max_font_size = 16;
 const min_device_width = 320;
 const max_device_width = 1920;
 const html = document.documentElement;

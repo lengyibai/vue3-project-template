@@ -14,7 +14,7 @@ $bus.on("tip", (v) => {
 <template>
   <transition name="fade">
     <div v-if="show_tip" class="c-dialog">
-      <div class="dialog">
+      <div class="global_dialog">
         <span class="title">提示</span>
         <div class="content">{{ tip_data?.text }}</div>
         <div class="btns">
