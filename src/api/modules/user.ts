@@ -4,5 +4,5 @@ import type { Result } from "@/api/interface";
 
 /** @description 密码登录 */
 export const loginPwd = () => {
-  return http.post<Result.UserInfo>(API_URL.Chat.MSG);
+  return http.post<Result.User.UserInfo>(API_URL.Chat.MSG);
 };

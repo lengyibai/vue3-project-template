@@ -1,38 +1,28 @@
 .c-dialog {
   .global_mask();
 
-  .dialog {
-    position: relative;
+  .title {
+    margin-bottom: 2rem;
+    font-weight: bold;
+    font-size: 1.75rem;
+  }
+
+  .content {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  .btns {
     display: flex;
     align-items: center;
-    flex-direction: column;
-    padding: 1.5rem;
-    width: 30rem;
-    border-radius: 1rem;
-    background-color: var(--theme-color-black-one);
+    justify-content: flex-end;
+    font-size: 1.5rem;
 
-    .title {
-      margin-bottom: 2rem;
-      font-weight: bold;
-      font-size: 1.75rem;
-    }
+    .chat-box-button {
+      padding: 0.75rem 3.5rem;
 
-    .content {
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-    }
-
-    .btns {
-      display: flex;
-      align-items: center;
-      font-size: 1.5rem;
-
-      .chat-box-button {
-        padding: 0.75rem 3.5rem;
-
-        &.cancel {
-          margin-right: 2rem;
-        }
+      &.cancel {
+        margin-right: 2rem;
       }
     }
   }

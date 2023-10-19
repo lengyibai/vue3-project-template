@@ -15,7 +15,7 @@ class Flexible {
 
   constructor() {
     window.addEventListener("resize", this.handleResize.bind(this));
-    window.addEventListener("pageshow", this.handleResize.bind(this));
+    window.addEventListener("DOMContentLoaded", this.handleResize.bind(this));
   }
 
   /** @description 添加回调函数 */

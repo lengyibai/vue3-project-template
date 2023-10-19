@@ -1,5 +1,5 @@
-import message from "./modules/message";
+// import message from "./modules/message";
 
-export default {
-  message,
-};
+// export default {
+//   message,
+// };
