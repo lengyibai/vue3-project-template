@@ -16,7 +16,9 @@
     "types": ["vite/client"],
     "useDefineForClassFields": true,
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@main/*": ["src/modules/main/*"],
+      "@minor/*": ["src/modules/minor/*"]
     }
   },
   "include": ["*.d.ts", "src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"],
