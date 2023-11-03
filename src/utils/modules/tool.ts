@@ -10,3 +10,7 @@ export const throttleDelay = (() => {
     }
   };
 })();
+
+export const getAssetsFile = (name: string) => {
+  return new URL(`/src/assets/imgs/${name}.png`, import.meta.url).href;
+};
