@@ -17,8 +17,8 @@
     "useDefineForClassFields": true,
     "paths": {
       "@/*": ["src/*"],
-      "@main/*": ["src/modules/main/*"],
-      "@minor/*": ["src/modules/minor/*"]
+      "@Android/*": ["src/modules/Android/*"],
+      "@iOS/*": ["src/modules/iOS/*"]
     }
   },
   "include": ["*.d.ts", "src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"],

@@ -16,16 +16,15 @@ export default defineConfig(({ mode }) => {
 
   return {
     base: "./",
-    publicDir: pathResolve("public"),
-    root: getViteEnv("VITE_APP_ROOTPATH"),
     plugins: [
       vue(),
-      // legacy({
-      //   targets: [">1%", "last 2 version", "not dead"],
-      // }),
+      legacy({
+        targets: [">1%", "last 2 version", "not dead"],
+      }),
       createHtmlPlugin({
         inject: {
           data: {
+            main: getViteEnv("VITE_ROOT_NAME"),
             title: getViteEnv("VITE_HTML_TITLE"),
             icon: getViteEnv("VITE_HTML_ICON"),
           },
@@ -41,7 +40,7 @@ export default defineConfig(({ mode }) => {
       }),
       VitePWA({
         registerType: "autoUpdate",
-        outDir: pathResolve(`dist/${getViteEnv("VITE_DIST_NAME")}`),
+        outDir: pathResolve(`dist`),
         devOptions: {
           enabled: true,
           resolveTempFolder: () => pathResolve("dev-dist"),
@@ -70,12 +69,20 @@ export default defineConfig(({ mode }) => {
         dts: pathResolve("src/typings/components.d.ts"),
         dirs: [pathResolve("src/components")],
       }),
+      viteVConsole({
+        entry: pathResolve("src/main.ts"),
+        enabled: false,
+        config: {
+          maxLogNumber: 1000,
+          theme: "white",
+        },
+      }),
     ],
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
-        "@main": fileURLToPath(new URL("./src/modules/main", import.meta.url)),
-        "@minor": fileURLToPath(new URL("./src/modules/minor", import.meta.url)),
+        "@Android": fileURLToPath(new URL("./src/modules/Android", import.meta.url)),
+        "@iOS": fileURLToPath(new URL("./src/modules/iOS", import.meta.url)),
         "vue-i18n": "vue-i18n/dist/vue-i18n.cjs.js",
       },
     },
@@ -101,7 +108,7 @@ export default defineConfig(({ mode }) => {
     },
 
     build: {
-      minify: getViteEnv("VITE_MINIFY") && "terser",
+      minify: "terser",
       chunkSizeWarningLimit: 1500,
       cssTarget: "chrome61",
       rollupOptions: {
@@ -112,7 +119,7 @@ export default defineConfig(({ mode }) => {
           chunkFileNames: "assets/js/[name]-[hash].js",
           entryFileNames: "assets/js/[name]-[hash].js",
           assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
-          dir: pathResolve(`dist/${getViteEnv("VITE_DIST_NAME")}`),
+          dir: pathResolve(`dist/${getViteEnv("VITE_ROOT_NAME")}`),
         },
       },
       terserOptions: {
