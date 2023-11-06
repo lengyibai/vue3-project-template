@@ -5,16 +5,11 @@ import App from "./App.vue";
 import setupStore from "./stores";
 
 // import { $flexible } from "@/utils";
-import setupLanguage from "@/language";
-import setupDirectives from "@/directives";
 import setupRouter from "@/router";
-
 const app = createApp(App);
 
 setupStore(app);
-setupDirectives(app);
 setupRouter(app);
-setupLanguage(app);
 
 app.mount("#app");
 

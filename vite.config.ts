@@ -18,13 +18,16 @@ export default defineConfig(({ mode }) => {
     base: "./",
     plugins: [
       vue(),
+      Components({
+        dts: pathResolve("src/typings/components.d.ts"),
+        dirs: [pathResolve("src/components")],
+      }),
       legacy({
         targets: [">1%", "last 2 version", "not dead"],
       }),
       createHtmlPlugin({
         inject: {
           data: {
-            main: getViteEnv("VITE_ROOT_NAME"),
             title: getViteEnv("VITE_HTML_TITLE"),
             icon: getViteEnv("VITE_HTML_ICON"),
           },
@@ -65,24 +68,10 @@ export default defineConfig(({ mode }) => {
           ],
         },
       }),
-      Components({
-        dts: pathResolve("src/typings/components.d.ts"),
-        dirs: [pathResolve("src/components")],
-      }),
-      viteVConsole({
-        entry: pathResolve("src/main.ts"),
-        enabled: false,
-        config: {
-          maxLogNumber: 1000,
-          theme: "white",
-        },
-      }),
     ],
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
-        "@Android": fileURLToPath(new URL("./src/modules/Android", import.meta.url)),
-        "@iOS": fileURLToPath(new URL("./src/modules/iOS", import.meta.url)),
         "vue-i18n": "vue-i18n/dist/vue-i18n.cjs.js",
       },
     },
@@ -108,18 +97,18 @@ export default defineConfig(({ mode }) => {
     },
 
     build: {
-      minify: "terser",
-      chunkSizeWarningLimit: 1500,
+      minify: getViteEnv("VITE_MINIFY") && "esbuild",
+      chunkSizeWarningLimit: 2048,
       cssTarget: "chrome61",
       rollupOptions: {
-        input: {
-          main: pathResolve(`${getViteEnv("VITE_APP_ROOTPATH") || ""}index.html`),
-        },
         output: {
+          manualChunks: {
+            vue: ["vue", "vue-router", "pinia"],
+          },
           chunkFileNames: "assets/js/[name]-[hash].js",
           entryFileNames: "assets/js/[name]-[hash].js",
           assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
-          dir: pathResolve(`dist/${getViteEnv("VITE_ROOT_NAME")}`),
+          dir: pathResolve(`dist/${getViteEnv("VITE_DIST_NAME")}`),
         },
       },
       terserOptions: {

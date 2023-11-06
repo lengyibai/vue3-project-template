@@ -16,9 +16,7 @@
     "types": ["vite/client"],
     "useDefineForClassFields": true,
     "paths": {
-      "@/*": ["src/*"],
-      "@Android/*": ["src/modules/Android/*"],
-      "@iOS/*": ["src/modules/iOS/*"]
+      "@/*": ["src/*"]
     }
   },
   "include": ["*.d.ts", "src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"],
