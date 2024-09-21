@@ -1,8 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="home">{{ $t("loading", { text: "首页" }) }}</div>
-  <FormInput />
+  <div class="home"></div>
 </template>
 
 <style scoped lang="less">
