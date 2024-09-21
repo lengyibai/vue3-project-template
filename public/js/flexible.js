@@ -1,7 +1,7 @@
 const flexible_min_font_size = 10; //最小字体大小
 const flexible_max_font_size = 16; //最大字体大小
 const flexible_min_device_width = 320; //适配最小手机尺寸
-const flexible_max_device_width = 1920; //设计稿宽度
+const flexible_max_device_width = 750; //设计稿宽度
 const flexible_html = document.documentElement;
 
 function onFlexible() {
