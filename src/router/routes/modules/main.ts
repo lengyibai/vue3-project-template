@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from "vue-router";
 
 const mainRoutes: RouteRecordRaw[] = [
   {
-    path: "/home",
+    path: "home",
     meta: {
       title: "首页",
     },

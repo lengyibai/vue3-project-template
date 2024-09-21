@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from "vue-router";
 
 const pageRoutes: RouteRecordRaw[] = [
   {
-    path: "/login",
+    path: "login",
     meta: {
       title: "登录",
     },

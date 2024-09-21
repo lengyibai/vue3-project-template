@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import Navbar from "./components/Navbar/index.vue";
 
+import { $loading } from "@/utils";
+
 defineOptions({
   name: "LayoutPage",
 });
+
+/* 路由组件加载结束后触发 */
+const onComponentMounted = () => {
+  $loading.close();
+};
 </script>
 
 <template>
@@ -11,8 +18,11 @@ defineOptions({
     <Navbar />
 
     <div class="page-container">
+      <!-- 路由页面 -->
       <router-view v-slot="{ Component }">
-        <component :is="Component" />
+        <transition name="fade" mode="out-in">
+          <component :is="Component" @vue:mounted="onComponentMounted" />
+        </transition>
       </router-view>
     </div>
   </div>
