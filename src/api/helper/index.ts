@@ -1,10 +1,15 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
 
 import { ResultData } from "../interface/modules/result";
 
 import { handleError, handleResponse } from "./error_msg";
 import { ignore } from "./ignore";
-import { getLoadingText } from "./loading_text";
 
 import { $loading, $message } from "@/utils";
 
@@ -22,13 +27,13 @@ class RequestUser {
     this.service.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
         //过滤不需要开启全屏loading的接口
-        if (!ignore.includes(config.url!)) $loading.showRequest(getLoadingText(config.url!));
+        if (!ignore.includes(config.url!)) $loading.show("loading...");
 
         return config;
       },
       (error: AxiosError) => {
         return Promise.reject(error);
-      }
+      },
     );
 
     /** @description 响应拦截器 */
@@ -43,7 +48,7 @@ class RequestUser {
             $message(err_msg, "ERROR");
             return Promise.reject(err_msg);
           }
-          $loading.closeRequset();
+          $loading.close();
         }
 
         return response;
@@ -55,11 +60,11 @@ class RequestUser {
         //过滤不需要关闭全屏loading和通过弹窗提示错误的接口
         if (!ignore.includes(url)) {
           if (err_msg) $message(err_msg, "ERROR");
-          $loading.closeRequset();
+          $loading.close();
         }
 
         return Promise.reject(err_msg);
-      }
+      },
     );
   }
 

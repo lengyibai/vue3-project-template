@@ -1,7 +1,10 @@
-node_modules
 *.md
-*.woff
+*.svg
 *.ttf
-.vscode
+*.woff
 dist
-src/typings/components.d.ts
+node_modules
+public
+Test
+dev-dist
+auto-script

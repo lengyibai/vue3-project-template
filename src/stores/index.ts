@@ -1,12 +1,12 @@
 import { createPinia } from "pinia";
-import { App } from "vue";
+import type { App } from "vue";
 
-export { UserStore } from "./modules/user";
-export { ControlStore } from "./modules/control";
+export * from "./modules/user";
 
+/** @description 挂载 */
 const setupStore = (app: App) => {
   const pinia = createPinia();
   app.use(pinia);
 };
 
-export default setupStore;
+export { setupStore };

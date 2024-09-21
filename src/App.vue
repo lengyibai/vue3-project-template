@@ -1,20 +1,21 @@
 <script setup lang="ts">
-import { $message, $tip } from "@/utils";
+import { Control } from "./components/business";
+import { $loading } from "./utils";
 
-setTimeout(() => {
-  $message("你好", "ERROR");
-
-  setTimeout(() => {
-    $tip({
-      text: "你好，有什么我可以帮助你的吗？",
-    });
-  }, 1000);
-}, 1000);
+/* 路由组件加载结束后触发 */
+const onComponentMounted = () => {
+  $loading.close();
+};
 </script>
 
 <template>
+  <!-- 路由页面 -->
   <router-view v-slot="{ Component }">
-    <component :is="Component" />
+    <transition name="fade" mode="out-in">
+      <component :is="Component" @vue:mounted="onComponentMounted" />
+    </transition>
   </router-view>
-  <Switch />
+
+  <!-- 全局开关 -->
+  <Control />
 </template>

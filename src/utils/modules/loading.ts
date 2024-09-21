@@ -1,55 +1,46 @@
-/* Loading防抖 */
+import { $bus } from "./eventBus";
 
-import { $bus } from "..";
+class LoadingManager {
+  private loadingCount = 0;
+  private closeTimer: NodeJS.Timeout | undefined;
+  private openTimer: NodeJS.Timeout | undefined;
 
-let loadingTimeout: NodeJS.Timeout | undefined;
-let timer: NodeJS.Timeout;
-let needLoadingRequestCount = 0;
+  /** @description 开启loading
+   * @param text loading文字
+   */
+  show(text: string) {
+    this.openTimer = setTimeout(() => {
+      if (this.closeTimer) clearTimeout(this.closeTimer);
 
-/** @description 开启loading */
-const showRequest = async (text: string) => {
-  if (loadingTimeout) clearTimeout(loadingTimeout);
+      if (this.loadingCount === 0) {
+        $bus.emit("loading", {
+          show: true,
+          text,
+        });
+      }
 
-  $bus.emit("loading", {
-    show: true,
-    text,
-  });
-
-  needLoadingRequestCount++;
-};
-
-/** @description 关闭loading */
-const closeRequset = async () => {
-  needLoadingRequestCount--;
-
-  if (needLoadingRequestCount <= 0) {
-    loadingTimeout = setTimeout(() => {
-      $bus.emit("loading", { show: false });
-      loadingTimeout = undefined;
-    }, 1000);
+      this.loadingCount++;
+    }, 250);
   }
-};
 
-const showView = async (text: string) => {
-  timer = setTimeout(() => {
-    $bus.emit("loading", {
-      show: true,
-      text,
+  /** @description 关闭loading */
+  close(): Promise<void> {
+    return new Promise<void>((resolve) => {
+      clearTimeout(this.openTimer);
+
+      if (this.loadingCount > 0) {
+        this.loadingCount--;
+      }
+
+      if (this.loadingCount === 0) {
+        this.closeTimer = setTimeout(() => {
+          $bus.emit("loading", { show: false });
+          this.closeTimer = undefined;
+          resolve();
+        }, 500);
+      }
     });
-  }, 500);
-
-  needLoadingRequestCount++;
-};
-
-/** @description 关闭loading */
-const closeView = async () => {
-  clearTimeout(timer);
-
-  needLoadingRequestCount--;
-
-  if (needLoadingRequestCount <= 0) {
-    $bus.emit("loading", { show: false });
   }
-};
+}
 
-export default { showRequest, closeRequset, showView, closeView };
+export const $loading = new LoadingManager();

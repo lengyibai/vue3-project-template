@@ -1,8 +1,10 @@
-import { $bus } from "..";
+import { $bus } from "./eventBus";
 
-export default (text: string, type: "DEFAULT" | "SUCCESS" | "WARNING" | "ERROR") => {
+const $message = (text: string, type: "DEFAULT" | "SUCCESS" | "WARNING" | "ERROR") => {
   $bus.emit("msg", {
     text,
     type,
   });
 };
+
+export { $message };
