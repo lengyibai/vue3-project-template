@@ -37,6 +37,7 @@ const onComponentMounted = () => {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: var(--theme-color-two);
 
   .main-container {
     flex-grow: 1;

@@ -1,1 +1,52 @@
-.navbar{}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 6.25rem;
+  padding: 0 2.5rem;
+  border-radius: 0 0 1.25rem 1.25rem;
+  background-color: var(--theme-color-one);
+
+  .logo {
+    width: 13.6875rem;
+    height: 3.9375rem;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+
+    .wallet {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 255px;
+      height: 54px;
+      margin-right: 44px;
+      padding: 14px;
+      padding-right: 0;
+      border: 1px solid #293a59;
+      border-radius: 16px;
+      background: #1f2338;
+
+      .amount {
+        color: #fff;
+        font-size: 24px;
+      }
+
+      .wallet-icon {
+        .global_flex-center();
+
+        width: 58px;
+        height: 54px;
+        background-image: url("@/assets/img/qianbao_bg.png");
+        background-size: 100% 100%;
+      }
+    }
+
+    .help {
+      width: 46px;
+      height: 46px;
+    }
+  }
+}

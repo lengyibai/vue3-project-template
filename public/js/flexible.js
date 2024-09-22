@@ -1,7 +1,5 @@
-const flexible_min_font_size = 10; //最小字体大小
-const flexible_max_font_size = 16; //最大字体大小
-const flexible_min_device_width = 320; //适配最小手机尺寸
-const flexible_max_device_width = 750; //设计稿宽度
+const flexible_rem = 16; //1rem像素大小
+const flexible_designer = 750; //设计稿宽度
 const flexible_html = document.documentElement;
 
 function onFlexible() {
@@ -9,12 +7,13 @@ function onFlexible() {
   //获取当前浏览器窗口的宽度
   const width = flexible_html.clientWidth;
 
-  if (width > flexible_max_device_width) {
+  if (width > flexible_designer) {
     //若视口宽度大于最大设备宽度，根据超出的px按比例增加字体大小
-    font_size = flexible_max_font_size + (width - flexible_max_device_width) / 10 / 12;
+    // font_size = flexible_rem + (width - flexible_designer) / 10 / 12;
+    font_size = flexible_rem
   } else {
     //如果宽度在最小和最大设备宽度之间，按比例计算字体大小
-    font_size = flexible_max_font_size - (flexible_max_font_size - flexible_min_font_size) * (1 - width / flexible_max_device_width);
+    font_size = flexible_rem - flexible_rem * (1 - width / flexible_designer);
   }
 
   //设置页面根元素的字体大小

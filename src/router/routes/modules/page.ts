@@ -6,7 +6,7 @@ const pageRoutes: RouteRecordRaw[] = [
     meta: {
       title: "登录",
     },
-    component: () => import("@/views/Login/index.vue"),
+    component: () => import("@/views/Base/Login/index.vue"),
   },
 ];
 
